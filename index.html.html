@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Be My Valentine 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  width: 100%;
+  max-width: 380px;
+  padding: 30px 20px 40px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,.2);
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: 26px;
+}
+
+p {
+  margin: 0;
+  color: #666;
+  font-size: 15px;
+}
+
+.buttons {
+  margin-top: 35px;
+  position: relative;
+  height: 140px;
+}
+
+button {
+  padding: 14px 26px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  min-width: 120px;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#no {
+  background: #eee;
+  color: #333;
+  left: 20%;
+  top: 70px;
+}
+
+.hidden {
+  display: none;
+}
+
+.success {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #ff4d6d;
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  button {
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Will you be my Valentine? 💕</h1>
+    <p>You make my days brighter and my heart happier.</p>
+
+    <div class="buttons">
+      <button id="yes">Yes 💖</button>
+      <button id="no">No 🙈</button>
+    </div>
+
+    <div id="result" class="hidden success">
+      Yayyyy!! I can’t wait for our Valentine’s date 🥹💘
+    </div>
+  </div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const result = document.getElementById("result");
+
+function moveNo() {
+  const parent = document.querySelector(".buttons");
+  const maxX = parent.clientWidth - noBtn.clientWidth;
+  const maxY = parent.clientHeight - noBtn.clientHeight;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+// Desktop hover
+noBtn.addEventListener("mouseenter", moveNo);
+
+// Mobile tap
+noBtn.addEventListener("touchstart", moveNo);
+
+yesBtn.addEventListener("click", () => {
+  document.querySelector(".buttons").style.display = "none";
+  result.classList.remove("hidden");
+});
+</script>
+
+</body>
+</html>
