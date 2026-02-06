@@ -1,142 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Be My Valentine 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Kavya 💘</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+.card{
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(15px);
+border-radius:28px;
+padding:35px 25px 45px;
+max-width:380px;
+width:100%;
+text-align:center;
+color:white;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+animation:pop .8s ease;
 }
 
-.card {
-  background: white;
-  width: 100%;
-  max-width: 380px;
-  padding: 30px 20px 40px;
-  border-radius: 22px;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,.2);
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
 }
 
-h1 {
-  margin: 10px 0;
-  font-size: 26px;
+.names{
+font-size:14px;
+letter-spacing:1px;
+opacity:.9;
+margin-bottom:10px;
+animation:fade 2s infinite alternate;
 }
 
-p {
-  margin: 0;
-  color: #666;
-  font-size: 15px;
+@keyframes fade{
+from{opacity:.6}
+to{opacity:1}
 }
 
-.buttons {
-  margin-top: 35px;
-  position: relative;
-  height: 140px;
+h1{
+margin:0;
+font-size:28px;
 }
 
-button {
-  padding: 14px 26px;
-  border-radius: 30px;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  position: absolute;
-  min-width: 120px;
+p{
+margin-top:8px;
+opacity:.9;
 }
 
-#yes {
-  background: #ff4d6d;
-  color: white;
-  left: 50%;
-  transform: translateX(-50%);
+.buttons{
+margin-top:40px;
+position:relative;
+height:150px;
 }
 
-#no {
-  background: #eee;
-  color: #333;
-  left: 20%;
-  top: 70px;
+button{
+border:none;
+border-radius:40px;
+padding:14px 30px;
+font-size:18px;
+cursor:pointer;
+position:absolute;
+min-width:130px;
+transition:.2s;
 }
 
-.hidden {
-  display: none;
+#yes{
+background:#fff;
+color:#ff4d6d;
+left:50%;
+transform:translateX(-50%);
+animation:pulse 1.5s infinite;
 }
 
-.success {
-  margin-top: 20px;
-  font-size: 20px;
-  color: #ff4d6d;
+@keyframes pulse{
+0%{transform:translateX(-50%) scale(1)}
+50%{transform:translateX(-50%) scale(1.08)}
+100%{transform:translateX(-50%) scale(1)}
 }
 
-/* Mobile tweaks */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 24px;
-  }
+#no{
+background:rgba(255,255,255,.7);
+left:20%;
+top:80px;
+}
 
-  button {
-    font-size: 17px;
-  }
+.hidden{display:none}
+
+.success{
+font-size:22px;
+margin-top:25px;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:float 6s linear infinite;
+opacity:.8;
+}
+
+@keyframes float{
+from{transform:translateY(0)}
+to{transform:translateY(-110vh)}
 }
 </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>Will you be my Valentine? 💕</h1>
-    <p>You make my days brighter and my heart happier.</p>
 
-    <div class="buttons">
-      <button id="yes">Yes 💖</button>
-      <button id="no">No 🙈</button>
-    </div>
+<div class="card">
 
-    <div id="result" class="hidden success">
-      Yayyyy!! I can’t wait for our Valentine’s date 🥹💘
-    </div>
-  </div>
+<div class="names">To Kavya 💕 From Shrestha</div>
+
+<h1>Will you be my Valentine? 💖</h1>
+
+<p>
+Kavya, you make my world softer, brighter, and happier every single day.
+</p>
+
+<div class="buttons">
+<button id="yes">Yes 💘</button>
+<button id="no">No 🙈</button>
+</div>
+
+<div id="result" class="hidden success">
+Yayyy Kavya!! I can’t wait for our Valentine’s date 🥹💞<br><br>
+— Shrestha ❤️
+</div>
+
+</div>
 
 <script>
-const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
-const result = document.getElementById("result");
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const result=document.getElementById("result");
 
-function moveNo() {
-  const parent = document.querySelector(".buttons");
-  const maxX = parent.clientWidth - noBtn.clientWidth;
-  const maxY = parent.clientHeight - noBtn.clientHeight;
-
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
-
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+function moveNo(){
+const box=document.querySelector(".buttons");
+const x=Math.random()*(box.clientWidth-noBtn.clientWidth);
+const y=Math.random()*(box.clientHeight-noBtn.clientHeight);
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
 }
 
-// Desktop hover
-noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("mouseenter",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
 
-// Mobile tap
-noBtn.addEventListener("touchstart", moveNo);
-
-yesBtn.addEventListener("click", () => {
-  document.querySelector(".buttons").style.display = "none";
-  result.classList.remove("hidden");
+yesBtn.addEventListener("click",()=>{
+document.querySelector(".buttons").style.display="none";
+result.classList.remove("hidden");
+confetti();
 });
+
+function createHeart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=14+Math.random()*25+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+
+setInterval(createHeart,400);
+
+function confetti(){
+for(let i=0;i<30;i++){
+setTimeout(createHeart,i*80);
+}
+}
 </script>
 
 </body>
